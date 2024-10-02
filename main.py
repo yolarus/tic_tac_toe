@@ -22,6 +22,14 @@ def tic_tac_toe():
     player = random.choice([player_1, player_2])
 
     while True:
+        output_data = PrettyTable()
+        output_data.field_names = [" ", "A", "B", "C"]
+        output_data.add_rows([[1, *data[0]],
+                              [2, *data[1]],
+                              [3, *data[2]]])
+
+        print(output_data)
+
         user_input = input(f"{player[0]}, введите номер ячейки в формате 'А1' (на английском)"
                            f" или введите '*', чтобы выйти: ")
 
@@ -41,19 +49,13 @@ def tic_tac_toe():
             print("УПС, что-то пошло не так, перепроверьте данные для ввода!")
             continue
 
-        output_data = PrettyTable()
-        output_data.field_names = [" ", "A", "B", "C"]
-        output_data.add_rows([[1, *data[0]],
-                              [2, *data[1]],
-                              [3, *data[2]]])
-
-        print(output_data)
-
         if win_check(data):
+            print(output_data)
             print(f"Игра окончена! Поздравляем {player[0]}, вы победили!")
             break
 
         if all(all(item) for item in data):
+            print(output_data)
             print("Игра окончена! Ничья!")
             break
 
